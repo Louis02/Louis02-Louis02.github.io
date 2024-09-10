@@ -1,0 +1,103 @@
+<html>
+<title>Bees Knees: News Api</title>
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1{
+
+border: 5px solid blue;
+text-align:center;
+background-color:cyan;
+}
+input{
+width:300px;
+text-align: center;
+border: 2px solid black;
+}
+div{
+
+text-align:center;
+text-color:orange;
+}
+h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
+}
+footer{
+text-align:center;
+text-color: azure;
+padding: 32px;
+}
+</style>
+<body>
+<h1>Bees Knees: Filtered news through news api's</h1>
+<center>
+<h3>Search Area:</h3>
+<br>
+Search:
+<input id="SearchID"></input>
+<br> To:
+<input id="ToID"></input>
+<br> From:
+<input id="FromID"></input>
+<br> Language:
+<input id="LangID"></input>
+<br> Sort By:
+<input id="SortID"></input>
+<br>
+<button id="SubmitID" onclick="submitData()">Submit</button>
+<br>
+<img src="https://www.reputationdefender.com/wp-content/uploads/2016/06/istock_000050656234_large-1630x689.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="350" height="150">
+<h3 id = "linkTitle">
+Links
+</h3>
+<div id = "mainDivID">
+
+
+<br>
+<script type="text/javascript">
+	function submitData() {
+		let search = document.getElementById("SearchID");
+		let to = document.getElementById("ToID");
+		let from = document.getElementById("FromID");
+		let lang = document.getElementById("LangID");
+		let sort = document.getElementById("SortID");
+
+		let connection = new XMLHttpRequest();
+	if(search.value!=null){
+		if(to.value==""){
+			to.value="%";
+		}
+		if(from.value==""){
+			from.value="%";
+		}
+		if(lang.value==""){
+			lang.value="%";
+		}
+		if(sort.value==""){
+			sort.value="%";
+		}
+		connection.open("GET", "http://localhost:8080/search="+search.value+ "&" + to.value +"&" + from.value + "&" + lang.value + "&"+ sort.value);
+
+		connection.send();
+		connection.onreadystatechange = function() {
+			if (this.status == 200) {
+				
+				document.getElementById("mainDivID").innerHTML = connection.responseText;
+			}
+		}
+	}
+		
+	}
+</script>
+</div>
+<div>
+
+
+<br>
+</div>
+</center>
+<footer >
+  <p>Powered by <a href="https://newsapi.org/" title="newsapi.org" target="_blank" class="w3-hover-text-green">newsapi.org</a></p>
+</footer>
+</body>
+</html>
