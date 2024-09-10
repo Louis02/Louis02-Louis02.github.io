@@ -1,0 +1,58 @@
+Title: Louis Derrien, Section A, Expression Solver
+
+Problem Description: When running this program, it will first solve all 10 of the problems on the expression.txt 
+file. It will then prompt you to enter your own expression to solve. There are 4 rules given when you enter your
+expression and they are :
+1: You must enter a whole number for the exponent
+2: Enter negative numbers as 0-2
+3: You can use (), *, /, +, -
+3: Don't use parenthesis around exponents
+You can edit the file but make sure to update the top line to show how many lines of expressions you will have.
+There are some quirks with inputting expressions I would've liked to solve if I had more time. On of these is 
+not being able to enter a negative number properly. You have to enter -2 as 0-2. If I had more time I could've
+made -2 work or use a different approach like ~ as a negative sign and - as a subtraction sign. I had to take
+square root out of my project because I didn't want to use cmath and I didn't have enough time to implement it.
+I also added a private first and last double in my operation class to keep track of the first and second number
+being calculated. I also included an execute function in order to abstract checking on which operation would be
+used. I also added getters in setters in my operation class. I added a vector to hold the operators in my 
+EventHandlerclass. I added a handleparenthesis, orderoperators, and filereader function into my EventHandler 
+class. All of these were added as I built more of the expressin solver because they were necessary in order to 
+compute what I was trying to compute.
+
+Class Description: I created 2 classes. Operation and EventHandler. Operation handles the actual operation between
+two numbers like adding or multiplying. I have the first, second, and operator as private data members and 
+functions to calculate the two numbers. I also have an execute function that determines what type of function to
+call. I also have getters and setters for my private data. This class helped my program because it helped abstract
+a lot of processes like determining which type of operation to do. It also kept my EventHandler class cleaner
+because I didn't need to include all of the operation functions inside of there. My EventHandler class has
+readexpression, readinput, evaluateexpression, orderoperators, handleparenthesis, and readfile functions. It also
+has a vector pointer to the numbers, operators, and order of operators. It also has a string for the expression.
+The readinput function helped me ask the user what they wanted to input for the expression and then save it.
+The readexpression class helped me break down the expression string into something much easier to work with.
+It adds all of the numbers to _pNums and all of the operators to _pOperators. This helps finding certain values a 
+lot easier because I can traverse a vector instead of finding it inside of a string. The orderoperators function
+helps me find the correct order of operators. It looks through the expression and then finds all of the operators
+and then puts them in the correct order. It then returns the values of each operator in the correct order 
+according to PEMDAS. I use this multiple times so it helps abstract it. The handleparenthesis function helps me 
+work with parenthesis. This function recursively calls so it was important to put it on its own. This will help 
+solve whatever is inside of the parenthesis and then remove the parenthsis from the expression. The readfile 
+function helps read and calculate everything in the file. Before asking for input this is ran in order to show
+some expressions that the solver is able to solve.
+
+List Data Structure: I used a few list data structures. One I will talk about is _pNums. This is a pointer to a 
+vector of doubles. This will hold all of the numbers of the expression in their correct space. It won't only have
+numbers from the expression. Whenever there is an operator it will add -1.23456789. This number can't be reached
+added normally because it only holds positive numbers from the user. Using this -1.23456789 helps make the 
+_pNums and _pOperators have the same order and size so it is much easier to calculate.
+
+File I/0: File input is used in the filereader function. This takes in a file of expressions and then solves them.
+The file's first line must include how many expressions there are and then each line must contain and expression
+with no spaces. This will then be calculated and then outputted in the terminal with the answer.
+
+Reflections: The most important thing this project did was help me feel more comfortable with recursion and the
+debugger. I was stuck on the handleparenthesis function for a very long time. I knew how recursion worked but
+it was very hard to trace in the code when I had a problem. This is where the debugger came in. I didn't have a 
+lot of good experience with the debugger but this project helped me become a lot better at it. It is much better
+at tracing recursion than I am and I was able to use that to fix the handleparenthesis class. Overall this project
+has helped make me feel like a better programmer becaue I was able to build this all on my own and fix a lot of
+bugs I didn't think I'd be able to fix.
